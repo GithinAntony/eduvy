@@ -1,0 +1,68 @@
+{% extends "office_administrator/acc_layout.html" %}
+{% load static %}
+{% block content %}
+  <!-- ======= Intro Section ======= -->
+  <main id="main" style="margin-top: 80px;">
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" style="box-shadow: none !important">
+      <div class="container-fluid" data-aos="fade-up">
+
+        <div class="section-header">
+          <h3>List Courses</h3>
+        </div>
+
+        <div class="row">
+<div class="col-lg-12">
+                 {% if messages %}
+                <ul class="messages text-center">
+                {% for message in messages %}
+                 <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                 {% endfor %}
+                 </ul>
+                 {% endif %}
+</div>
+
+  <div class="col-lg-6" style="border-right: #00428a thin solid">
+
+<h5 style="font-weight: bold">Courses</h5>
+  {% if courses|length > 0 %}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Duration</th>
+         <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+  {% for i in courses %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.description }}</td>
+        <td>{{ i.duration }} Year</td>
+        <td>
+{% if i.status != 'active' %}
+        <a href="/office-administrator/delete-courses/{{ i.unique_id }}" role="button" type="button" class="btn btn-danger">Delete</a>
+        <a href="/office-administrator/add-admission/{{ i.unique_id }}" role="button" type="button" class="btn btn-success">Add admission</a>
+{% endif %}
+        </td>
+      </tr>
+  {% endfor %}
+    </tbody>
+
+  </table>
+{% else %}
+<b>No courses added</b>
+{% endif %}
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+{% endblock %}

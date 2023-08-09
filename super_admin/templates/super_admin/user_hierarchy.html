@@ -1,0 +1,137 @@
+{% extends "super_admin/acc_layout.html" %}
+{% load static %}
+{% block content %}
+  <!-- ======= Intro Section ======= -->
+  <main id="main" style="margin-top: 80px;">
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" style="box-shadow: none !important">
+      <div class="container-fluid" data-aos="fade-up">
+
+        <div class="section-header">
+          <h3>Staff Details</h3>
+        </div>
+
+        <div class="row">
+<div class="col-lg-12">
+                 {% if messages %}
+                <ul class="messages text-center">
+                {% for message in messages %}
+                 <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                 {% endfor %}
+                 </ul>
+                 {% endif %}
+</div>
+ <div class="col-lg-4" style="border-right: #00428a thin solid">
+
+<h5 style="font-weight: bold">Principal</h5>
+  {% if principal|length > 0 %}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phonenumber</th>
+         <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+  {% for i in principal %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.firstname }} {{ i.lastname }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.phone }}</td>
+        <td>
+            <a href="" role="button" type="button" class="btn btn-info">View</a>
+{% if i.status != 'active' %}
+            <a href="/college-owners/user-principal-approve/{{ college_id }}/{{ i.unique_id }}" role="button" type="button" class="btn btn-success">Approove</a>
+{% endif %}
+        </td>
+      </tr>
+  {% endfor %}
+    </tbody>
+
+  </table>
+{% else %}
+<b>No principal added</b>
+{% endif %}
+          </div>
+  <div class="col-lg-4" style="border-right: #00428a thin solid">
+
+<h5 style="font-weight: bold">Faculty</h5>
+  {% if faculty|length > 0 %}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phonenumber</th>
+         <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+  {% for i in faculty %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.firstname }} {{ i.lastname }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.phone }}</td>
+        <td>
+            <a href="" role="button" type="button" class="btn btn-info">View</a>
+            <a href="" role="button" type="button" class="btn btn-success">Approve</a>
+        </td>
+      </tr>
+  {% endfor %}
+    </tbody>
+
+  </table>
+{% else %}
+<b>No Faculty added</b>
+{% endif %}
+          </div>
+ <div class="col-lg-4" style="border-right: #00428a thin solid">
+
+<h5 style="font-weight: bold">Teacher</h5>
+  {% if teacher|length > 0 %}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phonenumber</th>
+         <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+  {% for i in teacher %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.firstname }} {{ i.lastname }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.phone }}</td>
+        <td>
+            <a href="" role="button" type="button" class="btn btn-info">View</a>
+            <a href="" role="button" type="button" class="btn btn-success">Approve</a>
+        </td>
+      </tr>
+  {% endfor %}
+    </tbody>
+
+  </table>
+{% else %}
+<b>No teachers added</b>
+{% endif %}
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+{% endblock %}

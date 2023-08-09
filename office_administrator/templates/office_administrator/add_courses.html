@@ -1,0 +1,70 @@
+{% extends "office_administrator/acc_layout.html" %}
+{% load static %}
+{% block content %}
+  <!-- ======= Intro Section ======= -->
+  <main id="main" style="margin-top: 80px;">
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" style="box-shadow: none !important">
+      <div class="container-fluid" data-aos="fade-up">
+
+        <div class="section-header">
+          <h3>Add Courses</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 offset-lg-4">
+            <div class="form">
+              <form action="" method="POST" class="php-email-form" novalidate>
+                {% csrf_token %}
+                {% if messages %}
+                <ul class="messages text-center">
+                {% for message in messages %}
+                 <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                 {% endfor %}
+                 </ul>
+                 {% endif %}
+                <div class="form-row">
+                <div class="col-sm-12 align-center">
+               <div class="validate text-center"> {{ form.non_field_errors }} </div>
+                </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group col-lg-12">
+                  {{ form.name }}
+                  <div class="validate">{{ form.name.errors }}</div>
+                  </div>
+                  <div class="form-group col-lg-12">
+                    {{ form.description }}
+                  <div class="validate">{{ form.description.errors }}</div>
+                  </div>
+
+                   <div class="form-group col-lg-12">
+                    {{ form.duration }}
+                  <div class="validate">{{ form.duration.errors }}</div>
+                  </div>
+
+                                                        <div class="form-group col-lg-12">
+                     {{ form.select_course_type }}
+                  <div class="validate">{{ form.select_course_type.errors }}</div>
+                  </div>
+                                    <div class="form-group col-lg-12">
+                     {{ form.select_course_stream }}
+                  <div class="validate">{{ form.select_course_stream.errors }}</div>
+                  </div>
+
+                </div>
+    <div class="form-row">
+    <div class="col-lg-12 text-center">
+    <button type="submit" title="Send Message">Submit</button>
+    </div></div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "college_owners/acc_layout.html" %}
+{% load static %}
+{% block content %}
+  <!-- ======= Intro Section ======= -->
+  <main id="main" style="margin-top: 80px;">
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" style="box-shadow: none !important">
+      <div class="container-fluid" data-aos="fade-up">
+
+        <div class="section-header">
+          <h3>List College</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+  {% if colleges|length > 0 %}
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Website</th>
+        <th>Email</th>
+        <th>Phonenumber</th>
+         <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+  {% for i in colleges %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ i.name }}</td>
+        <td>{{ i.address }}</td>
+        <td>{{ i.website }}</td>
+        <td>{{ i.email }}</td>
+        <td>{{ i.phone }}</td>
+        <td>
+            <a href="" role="button" type="button" class="btn btn-info">Edit</a>
+            <a href="" role="button" type="button" class="btn btn-dark">Manage Profile</a>
+            <a href="/college-owners/user-hierarchy/{{ i.unique_id }}" role="button" type="button" class="btn btn-success">Staff Hierarchy </a>
+        </td>
+      </tr>
+  {% endfor %}
+    </tbody>
+
+  </table>
+{% else %}
+<b>No colleges added</b>
+{% endif %}
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+{% endblock %}
